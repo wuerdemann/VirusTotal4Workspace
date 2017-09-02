@@ -1,0 +1,9 @@
+---
+applications:
+- name: VT4WW
+  memory: 512M
+  host: VT4WW
+  domain: eu-gb.mybluemix.net
+  buildpack: liberty-for-java
+  services:
+  - availability-monitoring-auto

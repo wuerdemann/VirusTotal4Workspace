@@ -1,0 +1,32 @@
+info:
+    app:
+       name: {build.app.name}
+       group: {build.app.group}
+       description: {build.app.description}
+       version: {build.app.version}
+       buildtime: {build.app.buildtime}
+
+spring:
+        application:
+             name: {build.app.name}
+
+server:
+        port: ${HTTP_PORT:9080}
+        tomcat:
+             uri-encoding: ${URI_ENCODING:UTF-8}
+
+watsonwork:
+        webhook:
+            secret: ${WEBHOOK_SECRET:abc123}
+        app:
+            id: ${APP_ID:abc123}
+            secret: ${APP_SECRET:abc123}
+        api:
+            uri: ${WATSON_WORK_API_URI:https://api.watsonwork.ibm.com}
+            oauth: ${WATSON_WORK_OAUTH:/oauth/authorize}
+            
+virustotal:
+        apikey: ${APIKEY:abc123}
+        
+### REPLACE abc123 WITH YOUR OWN CREDENTIALS
+        

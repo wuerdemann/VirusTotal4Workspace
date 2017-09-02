@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/html">
+<head>
+<title>Welcome to VirusTotal for IBM Watson Workspace</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://www.ibm.com/favicon.ico" rel="icon" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/ibmfonts.css}" rel="stylesheet" />
+<link th:href="@{/css/custom.css}" rel="stylesheet" />
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="page-header">
+			<h1>VirusTotal for IBM Watson Workspace</h1>
+			<p class="lead">Introduction and Terms of Use</p>
+		</div>
+		<div class="row">
+			<div class="col-sm-6" style="color: #ffffff;">
+				<h2>Introduction</h2>
+				<p>This Bot provides virus "scanning" for files that are added
+					to a IBM Watson Workspace conversation.</p>
+				<p>Therefore this bot sends the SHA-256 hash of an attached file
+					to VirusTotal. If the file is known to be malicious, the user gets
+					a notification. If the state is unknown, the user may decide to
+					send the whole file to VirusTotal</p>
+				<p>
+					<strong>NB: Sending files to VirusTotal will disclose
+						confidential content and VirusTotal may use and redistribute your
+						data!</strong> (see <a
+						href="https://www.virustotal.com/de/about/terms-of-service/"
+						target="_blank">VirusTotal Rights</a>)
+				</p>
+
+				<h2>Support or Contact</h2>
+				<p>
+					Having trouble with this project? Do not hesitate to contact me: <a
+						href="mailto:michael.wuerdemann@de.ibm.com" target="_blank">Michael
+						W&uuml;rdemann</a> or via IBM Watson Workspace and I'll help you to sort it
+					out.
+				</p>
+				<h2>Contribute to this Project</h2>
+				<p>You are welcome to suggest new features and improvements.
+					Please feel free to fork and make pull requests with your additions
+					and improvements.</p>
+			</div>
+			<div class="col-sm-6" style="color: #ffffff;">
+				<h2>Disclaimers</h2>
+
+				<p>Your access to and use of the Services is at your own risk.
+					You understand and agree that the Services are provided to you on
+					an "AS IS" and "AS AVAILABLE" basis. Without limiting the
+					foregoing, IBM AND ITS AFFILIATES, AGENTS, PARTNERS AND
+					SUBSIDIARIES DISCLAIM ANY WARRANTIES, EXPRESS OR IMPLIED, OF
+					MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+					NON-INFRINGEMENT.</p>
+				<p>You also agree that IBM has no responsibility or liability
+					for the deletion of, or the failure to store or to transmit, any
+					content and other communications maintained by the Services.</p>
+				<p>The Services may contain links to third-party websites or
+					resources. They may also contain comments and/or posts with
+					non-anchored linked URLs. You acknowledge and agree that we are not
+					responsible or liable for: (i) the availability or accuracy of such
+					websites or resources; or (ii) the content, products, or services
+					on or available from such websites or resources. Links to such
+					websites or resources do not imply any endorsement by IBM of
+					such websites or resources or the content, products, or services
+					available from such websites or resources. You acknowledge sole
+					responsibility for and assume all risk arising from your use of any
+					such websites or resources. Please note that user comments on URLs
+					and files may contain URLs/links leading to malware.</p>
+
+				<h2>Limitation of Liability</h2>
+
+				<p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IBM
+					AND ITS PARENT, SUBSIDIARIES, AFFILIATES, OFFICERS, EMPLOYEES,
+					AGENTS, PARTNERS AND LICENSORS WILL NOT BE LIABLE FOR ANY DIRECT,
+					INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES,
+					INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL,
+					OR OTHER LOSSES, RESULTING FROM (i) YOUR ACCESS TO OR USE OF OR
+					INABILITY TO ACCESS OR USE THE SERVICES; (ii) ANY CONDUCT OR
+					CONTENT OF ANY THIRD PARTY, INCLUDING WITHOUT LIMITATION, ANY
+					DEFAMATORY, OFFENSIVE OR ILLEGAL CONDUCT OF OTHER USERS OR THIRD
+					PARTIES; (iii) ANY CONTENT OBTAINED FROM THE SERVICES; AND (iv)
+					UNAUTHORISED ACCESS, USE OR ALTERATION OF YOUR TRANSMISSIONS OR
+					CONTENT, WHETHER BASED ON WARRANTY, CONTRACT, TORT (INCLUDING
+					NEGLIGENCE) OR ANY OTHER LEGAL THEORY, WHETHER OR NOT WE HAVE BEEN
+					INFORMED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+				<h2>Viruses, Hacking and Other Offences</h2>
+
+				<p>You must not misuse our Services. You must not attempt to
+					gain unauthorised access to our website, the server on which our
+					website is stored or any server, computer or database connected to
+					our website. You must not attack our website via a
+					denial-of-service attack or a distributed denial-of service attack.
+				</p>
+				<p>We will not be liable for any loss or damage caused by a
+					distributed denial-of-service attack, viruses or other
+					technologically harmful material that may infect your computer
+					equipment, computer programs, data or other proprietary material
+					due to your access to or use of the Services or any third party
+					content or websites.</p>
+			</div>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+
+
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>

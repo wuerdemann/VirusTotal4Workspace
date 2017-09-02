@@ -1,0 +1,62 @@
+{"properties": [
+  {
+    "name": "virustotal.apikey",
+    "type": "java.lang.String",
+    "description": "A description for 'virustotal.apikey'"
+  },
+  {
+    "name": "info.app.name.build.app.name",
+    "type": "java.lang.String",
+    "description": "A description for 'info.app.name.build.app.name'"
+  },
+  {
+    "name": "watsonwork.webhook.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'watsonwork.webhook.secret'"
+  },
+  {
+    "name": "watsonwork.app.id",
+    "type": "java.lang.String",
+    "description": "A description for 'watsonwork.app.id'"
+  },
+  {
+    "name": "watsonwork.api.uri",
+    "type": "java.lang.String",
+    "description": "A description for 'watsonwork.api.uri'"
+  },
+  {
+    "name": "info.app.group.build.app.group",
+    "type": "java.lang.String",
+    "description": "A description for 'info.app.group.build.app.group'"
+  },
+  {
+    "name": "info.app.description.build.app.description",
+    "type": "java.lang.String",
+    "description": "A description for 'info.app.description.build.app.description'"
+  },
+  {
+    "name": "info.app.version.build.app.version",
+    "type": "java.lang.String",
+    "description": "A description for 'info.app.version.build.app.version'"
+  },
+  {
+    "name": "info.app.buildtime.build.app.buildtime",
+    "type": "java.lang.String",
+    "description": "A description for 'info.app.buildtime.build.app.buildtime'"
+  },
+  {
+    "name": "spring.name.build.app.name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.name.build.app.name'"
+  },
+  {
+    "name": "watsonwork.app.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'watsonwork.app.secret'"
+  },
+  {
+    "name": "watsonwork.api.oauth",
+    "type": "java.lang.String",
+    "description": "A description for 'watsonwork.api.oauth'"
+  }
+]}

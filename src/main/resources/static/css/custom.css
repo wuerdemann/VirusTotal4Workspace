@@ -1,0 +1,43 @@
+html, body {
+	height: 100%;
+	font-family: "ibm-plex-sans", "Helvetica Neue", Arial, sans-serif;
+	background-color: #110022;
+}
+
+h1 {
+	font-family: "ibm-plex-sans", "Helvetica Neue", Arial,
+		sans-serif font-size : 80px;
+	font-weight: 800;
+	color: #DDCCEE;
+}
+
+.lead {
+	color: #DDCCEE;
+}
+
+/* Custom container */
+.container-full {
+	margin: 0 auto;
+	width: 100%;
+	min-height: 100%;
+	color: #eee;
+	overflow: hidden;
+}
+
+.container-full-success {
+	margin: 0 auto;
+	width: 100%;
+	min-height: 100%;
+	background-color: #0c570c;
+	color: #eee;
+	overflow: hidden;
+}
+
+.container-full a {
+	color: #efefef;
+	text-decoration: none;
+}
+
+.v-center {
+	margin-top: 7%;
+}

@@ -1,0 +1,19 @@
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Exclude maven wrapper
+!/.mvn/wrapper/maven-wrapper.jar
+
+# Exclude Mac and Eclipse stuff
+.DS_Store
+.settings/
+
+# Exclude real application-properties
+src/main/resources/application.yml
