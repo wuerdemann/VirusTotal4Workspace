@@ -27,6 +27,7 @@ watsonwork:
             
 virustotal:
         apikey: ${APIKEY:abc123}
+        apiuri: ${APIURI:https://www.virustotal.com/vtapi/v2/}
         
 ### REPLACE abc123 WITH YOUR OWN CREDENTIALS
         

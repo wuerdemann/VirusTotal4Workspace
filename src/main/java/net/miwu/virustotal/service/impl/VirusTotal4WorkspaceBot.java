@@ -98,22 +98,31 @@ public class VirusTotal4WorkspaceBot implements WorkspaceBot {
 									timetohash));
 							VTResponse report = checkHashOnVirusTotal(sha256);
 							if (report.responseCode == 0) {
-								wwService.createMessage(event.getSpaceId(), MessageUtils.buildMessage("Unknown File",
-										"VirusTotal reports: " + report.verboseMsg));
+								wwService.createMessage(event.getSpaceId(),
+										MessageUtils.buildMessage(
+												MessageFormat.format("Unknown File: {0} ({1})", entry.getName(),
+														entry.getContentType()),
+												MessageFormat.format("VirusTotal reports: {0}", report.verboseMsg)));
 							} else {
 								if (report.positives > 0) {
-									wwService.createMessage(event.getSpaceId(),
-											MessageUtils.buildMessage("Known Bad File", MessageFormat.format(
+									wwService.createMessage(event.getSpaceId(), MessageUtils.buildMessage(
+											MessageFormat.format("Known Bad File: {0} ({1})", entry.getName(),
+													entry.getContentType()),
+											MessageFormat.format(
 													"VirusTotal reports: {0}\n{1} of {2} virus scanners know this file.\nYou can find the scan report here: {3}",
 													report.verboseMsg, report.positives, report.total,
-													report.permalink), Color.RED));
+													report.permalink),
+											Color.RED));
 								} else {
 
-									wwService.createMessage(event.getSpaceId(),
-											MessageUtils.buildMessage("Known Good File", MessageFormat.format(
+									wwService.createMessage(event.getSpaceId(), MessageUtils.buildMessage(
+											MessageFormat.format("Known Good File: {0} ({1})", entry.getName(),
+													entry.getContentType()),
+											MessageFormat.format(
 													"VirusTotal reports: {0}\n{1} of {2} virus scanners know this file.\nYou can find the scan report here: {3}",
 													report.verboseMsg, report.positives, report.total,
-													report.permalink), Color.GREEN));
+													report.permalink),
+											Color.GREEN));
 								}
 							}
 						} catch (NoSuchAlgorithmException e) {

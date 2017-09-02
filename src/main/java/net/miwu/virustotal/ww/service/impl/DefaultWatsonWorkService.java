@@ -84,7 +84,7 @@ public class DefaultWatsonWorkService implements WatsonWorkService {
 	public void uploadAppPhoto() {
 		File file;
 		try {
-			file = ResourceUtils.getFile("classpath:app-photo.png");
+			file = ResourceUtils.getFile("classpath:app-photo.jpg");
 
 			MediaType mediaType = MediaType.parse(org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE);
 			MultipartBody.Part filePart = MultipartBody.Part.createFormData(MessageTypes.FORM_DATA_FILE, file.getName(),
