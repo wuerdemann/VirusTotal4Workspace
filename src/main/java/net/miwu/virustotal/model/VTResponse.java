@@ -8,6 +8,9 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.*;
 
+import lombok.Data;
+
+@Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "scans", "scan_id", "sha1", "resource", "response_code", "scan_date", "permalink", "verbose_msg",
 		"total", "positives", "sha256", "md5" })

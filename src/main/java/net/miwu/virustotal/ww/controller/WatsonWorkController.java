@@ -43,10 +43,6 @@ import net.miwu.virustotal.ww.utils.MessageTypes;
 @Slf4j
 public class WatsonWorkController {
 
-	// @Autowired
-	// private WatsonWorkProperties watsonWorkProperties;
-	// @Autowired
-	// private WatsonWorkService watsonWorkService;
 	@Autowired
 	private AuthService authService;
 

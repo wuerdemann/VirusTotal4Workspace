@@ -30,5 +30,8 @@ import lombok.Data;
 public class AppProperties {
 
 	@Value("${virustotal.apikey}")
-	private String vtApiKey;
+	private String vtAPIKey;
+
+	@Value("${virustotal.apiuri}")
+	private String vtAPIUri;
 }

@@ -8,6 +8,9 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.*;
 
+import lombok.Data;
+
+@Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
 

@@ -58,5 +58,10 @@
     "name": "watsonwork.api.oauth",
     "type": "java.lang.String",
     "description": "A description for 'watsonwork.api.oauth'"
+  },
+  {
+    "name": "virustotal.apiuri",
+    "type": "java.lang.String",
+    "description": "A description for 'virustotal.apiuri'"
   }
 ]}
