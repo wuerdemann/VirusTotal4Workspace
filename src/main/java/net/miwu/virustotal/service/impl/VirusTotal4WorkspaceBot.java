@@ -9,7 +9,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.MessageFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -49,6 +48,8 @@ import retrofit2.Response;
 @EnableAsync
 public class VirusTotal4WorkspaceBot implements WorkspaceBot {
 
+	private static final String VERY_BAD_FILE_SHA256 = "706d185e58c8b55f642262da94f85595975841c94e3cda609b453f79db1ed0ae";
+
 	@Autowired
 	private WatsonWorkService wwService;
 
@@ -78,25 +79,29 @@ public class VirusTotal4WorkspaceBot implements WorkspaceBot {
 		if (null != joinedArray) attachments.addAll(Arrays.asList(joinedArray));
 		if (log.isDebugEnabled())
 			wwService.createMessage(event.getSpaceId(), MessageUtils.buildMessage("Debug Echo", MessageFormat
-					.format("{0}\nDateien: {1}", StringEscapeUtils.escapeHtml4(msgcontent), attachments.size())));
+					.format("{0}\nNo. of files: {1}", StringEscapeUtils.escapeHtml4(msgcontent), attachments.size())));
 		if (attachments.size() > 0) {
 			for (String fileID : attachments) {
 				log.info("Request for FileID: " + fileID);
 				FileInfo fileInfo = wwService.getFileInfo(fileID);
 				if (fileInfo != null) {
 					for (Entry entry : fileInfo.entries) {
-						log.info(MessageFormat.format("Entry: {0} ({1})", entry.getName(), entry.contentType));
+						log.info(MessageFormat.format("Virus-Scan for: {0} ({1} by {2} in space {3})", entry.getName(),
+								entry.contentType, event.getUserName(), event.getSpaceName()));
 						String downloadURL = entry.getUrls().getRedirectDownload();
 						byte[] fileBytes = wwService.downloadFile(downloadURL);
 						try {
 							MessageDigest digest = MessageDigest.getInstance("SHA256");
-							Date now = new Date();
 							byte[] hash = digest.digest(fileBytes);
-							long timetohash = new Date().getTime() - now.getTime();
 							String sha256 = DatatypeConverter.printHexBinary(hash);
-							log.info(MessageFormat.format("Hash SHA-256 for {0} is {1} in {2}ms", downloadURL, sha256,
-									timetohash));
+
+							// HACK for Demo
+							if (entry.getName().contains("BadFile")) {
+								sha256 = VERY_BAD_FILE_SHA256;
+							}
+
 							VTResponse report = checkHashOnVirusTotal(sha256);
+
 							if (report.responseCode == 0) {
 								wwService.createMessage(event.getSpaceId(),
 										MessageUtils.buildMessage(
@@ -153,14 +158,14 @@ public class VirusTotal4WorkspaceBot implements WorkspaceBot {
 		VTResponse report = null;
 		String vtAPIKey = vtProps.getVtAPIKey();
 		Call<VTResponse> virusTotalReport = vtClient.getVirusTotalReport(vtAPIKey, sha256);
-		log.info("Call created for apikey: " + vtAPIKey + ": " + virusTotalReport.request().url().redact());
+		log.debug("Call created for apikey: " + vtAPIKey + ": " + virusTotalReport.request().url().redact());
 		try {
 			Response<VTResponse> vtReport = virusTotalReport.execute();
 			log.info("Call executed: isSuccessful: " + vtReport.isSuccessful());
 			if (vtReport.isSuccessful()) {
 				report = vtReport.body();
 				log.info("Report: " + report.verboseMsg + ": " + report.positives + " of " + report.total);
-				log.info("\n" + report.toString());
+				log.debug("\n" + report.toString());
 			} else {
 				log.error("VT-Error: " + vtReport.code() + " " + vtReport.message());
 			}
