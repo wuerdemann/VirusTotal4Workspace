@@ -1,8 +1,8 @@
 ---
 applications:
-- name: VT4WW
+- name: VT4WW-beta
   memory: 512M
-  host: VT4WW
+  host: VT4WW-beta
   domain: eu-gb.mybluemix.net
   buildpack: liberty-for-java
   services:
