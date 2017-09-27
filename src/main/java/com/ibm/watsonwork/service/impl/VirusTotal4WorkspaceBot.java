@@ -73,16 +73,18 @@ public class VirusTotal4WorkspaceBot implements WorkspaceBot {
 		VTResponse report = null;
 		String vtAPIKey = vtProps.getVtAPIKey();
 		Call<VTResponse> virusTotalReport = vtClient.getVirusTotalReport(vtAPIKey, sha256);
-		log.debug("Call created for apikey: " + vtAPIKey + ": " + virusTotalReport.request().url().redact());
+		log.debug(MessageFormat.format("Call created for apikey: {0}: {1}", vtAPIKey,
+				virusTotalReport.request().url().redact()));
 		try {
 			Response<VTResponse> vtReport = virusTotalReport.execute();
-			log.info("Call executed: isSuccessful: " + vtReport.isSuccessful());
+			log.info(MessageFormat.format("Call executed: isSuccessful: {0}", vtReport.isSuccessful()));
 			if (vtReport.isSuccessful()) {
 				report = vtReport.body();
-				log.info("Report: " + report.verboseMsg + ": " + report.positives + " of " + report.total);
-				log.debug("\n" + report.toString());
+				log.info(MessageFormat.format("Report: {0}: {1} of {2}", report.verboseMsg, report.positives,
+						report.total));
+				log.debug(MessageFormat.format("\n{0}", report.toString()));
 			} else {
-				log.error("VT-Error: " + vtReport.code() + " " + vtReport.message());
+				log.error(MessageFormat.format("VT-Error: {0} {1}", vtReport.code(), vtReport.message()));
 			}
 		} catch (IOException e) {
 			log.error("Error while retrieving VT-Report", e);
@@ -158,7 +160,7 @@ public class VirusTotal4WorkspaceBot implements WorkspaceBot {
 							byte[] hash = digest.digest(fileBytes);
 							String sha256 = DatatypeConverter.printHexBinary(hash);
 
-							// HACK for Demo
+							// HACK: for Demo
 							if (entry.getName().contains("BadFile")) {
 								sha256 = VERY_BAD_FILE_SHA256;
 							}
