@@ -63,6 +63,68 @@ public class VirusTotal4WorkspaceBot implements WorkspaceBot {
 	@Autowired
 	private VirusTotalClient vtClient;
 
+	/**
+	 * This method sends a request to VirusTotal and collects the responses
+	 * 
+	 * @param sha256
+	 *            Hash of the file
+	 */
+	private VTResponse checkHashOnVirusTotal(String sha256) {
+		VTResponse report = null;
+		String vtAPIKey = vtProps.getVtAPIKey();
+		Call<VTResponse> virusTotalReport = vtClient.getVirusTotalReport(vtAPIKey, sha256);
+		log.debug("Call created for apikey: " + vtAPIKey + ": " + virusTotalReport.request().url().redact());
+		try {
+			Response<VTResponse> vtReport = virusTotalReport.execute();
+			log.info("Call executed: isSuccessful: " + vtReport.isSuccessful());
+			if (vtReport.isSuccessful()) {
+				report = vtReport.body();
+				log.info("Report: " + report.verboseMsg + ": " + report.positives + " of " + report.total);
+				log.debug("\n" + report.toString());
+			} else {
+				log.error("VT-Error: " + vtReport.code() + " " + vtReport.message());
+			}
+		} catch (IOException e) {
+			log.error("Error while retrieving VT-Report", e);
+		}
+		return report;
+	}
+
+	@Override
+	@Async(value = "WebhookThreadPoolExecutor")
+	public ResponseEntity<?> handleAnnotationAdded(WebhookEvent webhookEvent) {
+		log.debug(webhookEvent.toString());
+		return ResponseEntity.ok().build();
+	}
+
+	@Override
+	@Async(value = "WebhookThreadPoolExecutor")
+	public ResponseEntity<?> handleAnnotationChanged(WebhookEvent event) {
+		log.debug(event.toString());
+		return ResponseEntity.ok().build();
+	}
+
+	@Override
+	@Async(value = "WebhookThreadPoolExecutor")
+	public ResponseEntity<?> handleAnnotationRemoved(WebhookEvent webhookEvent) {
+		log.debug(webhookEvent.toString());
+		return ResponseEntity.ok().build();
+	}
+
+	@Override
+	@Async(value = "WebhookThreadPoolExecutor")
+	public ResponseEntity<?> handleMemberAdded(WebhookEvent webhookEvent) {
+		log.debug(webhookEvent.toString());
+		return ResponseEntity.ok().build();
+	}
+
+	@Override
+	@Async(value = "WebhookThreadPoolExecutor")
+	public ResponseEntity<?> handleMemberRemoved(WebhookEvent webhookEvent) {
+		log.debug(webhookEvent.toString());
+		return ResponseEntity.ok().build();
+	}
+
 	@Override
 	@Async(value = "WebhookThreadPoolExecutor")
 	public ResponseEntity<?> handleMessageCreate(@NotNull WebhookEvent event) {
@@ -140,39 +202,5 @@ public class VirusTotal4WorkspaceBot implements WorkspaceBot {
 		}
 
 		return ResponseEntity.ok().build();
-	}
-
-	@Override
-	@Async(value = "WebhookThreadPoolExecutor")
-	public ResponseEntity<?> handleAnnotationChanged(WebhookEvent event) {
-		log.info(event.toString());
-		return ResponseEntity.ok().build();
-	}
-
-	/**
-	 * This method sends a request to VirusTotal and collects the responses
-	 * 
-	 * @param sha256
-	 *            Hash of the file
-	 */
-	private VTResponse checkHashOnVirusTotal(String sha256) {
-		VTResponse report = null;
-		String vtAPIKey = vtProps.getVtAPIKey();
-		Call<VTResponse> virusTotalReport = vtClient.getVirusTotalReport(vtAPIKey, sha256);
-		log.debug("Call created for apikey: " + vtAPIKey + ": " + virusTotalReport.request().url().redact());
-		try {
-			Response<VTResponse> vtReport = virusTotalReport.execute();
-			log.info("Call executed: isSuccessful: " + vtReport.isSuccessful());
-			if (vtReport.isSuccessful()) {
-				report = vtReport.body();
-				log.info("Report: " + report.verboseMsg + ": " + report.positives + " of " + report.total);
-				log.debug("\n" + report.toString());
-			} else {
-				log.error("VT-Error: " + vtReport.code() + " " + vtReport.message());
-			}
-		} catch (IOException e) {
-			log.error("Error while retrieving VT-Report", e);
-		}
-		return report;
 	}
 }

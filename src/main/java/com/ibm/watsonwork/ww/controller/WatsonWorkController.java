@@ -109,32 +109,55 @@ public class WatsonWorkController {
 	private ResponseEntity<?> processWebhook(WebhookEvent webhookEvent) {
 		// TODO: Add missing cases for more event-types
 		ResponseEntity<?> response = ResponseEntity.ok().build();
-		Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create();
-		String json = gson.toJson(webhookEvent);
 
 		if (!StringUtils.equals(wwProps.getAppId(), webhookEvent.getUserId())
 				&& !SPACEID_DEBUG_SPACE.equals(webhookEvent.getSpaceId())) {
-			log.info(MessageFormat.format("\nWebhook-Event: {0}\n", json));
-			wwService.createMessage(SPACEID_DEBUG_SPACE,
-					MessageUtils.buildMessage(
-							MessageFormat.format("DEBUG in {0} von {1} ({2})", webhookEvent.getSpaceName(),
-									webhookEvent.getUserName(), webhookEvent.getType()),
-							MessageFormat.format("``` json\n{0}\n```", json), Color.LIGHT_GRAY));
 
 			switch (webhookEvent.getType()) {
 				case MessageTypes.MESSAGE_CREATED:
 					response = bot.handleMessageCreate(webhookEvent);
 					break;
+				case MessageTypes.MESSAGE_ANNOTATION_ADDED:
+					response = bot.handleAnnotationAdded(webhookEvent);
+					break;
 				case MessageTypes.MESSAGE_ANNOTATION_EDITED:
 					response = bot.handleAnnotationChanged(webhookEvent);
 					break;
+				case MessageTypes.MESSAGE_ANNOTATION_REMOVED:
+					response = bot.handleAnnotationRemoved(webhookEvent);
+					break;
+				case MessageTypes.SPACE_MEMBERS_ADDED:
+					response = bot.handleMemberAdded(webhookEvent);
+					break;
+				case MessageTypes.SPACE_MEMBERS_REMOVED:
+					response = bot.handleMemberRemoved(webhookEvent);
+					break;
 
 				default:
+					// If a debugging space is declared, copy every event to that space as a new
+					// message within that space.
+					// CAUTION: This might end up in a lot of msgs!
+					// NB: This App must be assigned to that Debugging space, too!
+					if (StringUtils.isNotBlank(SPACEID_DEBUG_SPACE)) createDebugMessage(webhookEvent);
 					break;
 			}
 		}
 
 		return response;
+	}
+
+	/**
+	 * @param webhookEvent
+	 */
+	private void createDebugMessage(WebhookEvent webhookEvent) {
+		Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create();
+		String json = gson.toJson(webhookEvent);
+		log.info(MessageFormat.format("\nWebhook-Event: {0}\n", json));
+		wwService.createMessage(SPACEID_DEBUG_SPACE,
+				MessageUtils.buildMessage(
+						MessageFormat.format("DEBUG in {0} von {1} ({2})", webhookEvent.getSpaceName(),
+								webhookEvent.getUserName(), webhookEvent.getType()),
+						MessageFormat.format("``` json\n{0}\n```", json), Color.LIGHT_GRAY));
 	}
 
 }
