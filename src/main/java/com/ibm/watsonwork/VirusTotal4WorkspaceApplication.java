@@ -34,7 +34,7 @@ public class VirusTotal4WorkspaceApplication {
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
 		executor.setCorePoolSize(10);
 		executor.setQueueCapacity(50);
-		executor.setThreadNamePrefix("WebhookEventProcess-");
+		executor.setThreadNamePrefix("WebhookEventProcess-" + VirusTotal4WorkspaceApplication.class.getSimpleName());
 		executor.initialize();
 		return executor;
 	}

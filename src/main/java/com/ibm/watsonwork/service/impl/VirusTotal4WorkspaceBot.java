@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.ibm.watsonwork.service.impl;
 
 import java.awt.Color;
