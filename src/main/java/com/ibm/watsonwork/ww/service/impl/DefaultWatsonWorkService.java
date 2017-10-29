@@ -21,9 +21,9 @@ import java.io.IOException;
 import java.text.MessageFormat;
 
 import javax.annotation.PostConstruct;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Async;
@@ -165,7 +165,7 @@ public class DefaultWatsonWorkService implements WatsonWorkService {
 	 */
 	@Override
 	@GET
-	public byte[] downloadFile(@NotEmpty String downloadURL) {
+	public byte[] downloadFile(@NotBlank String downloadURL) {
 		byte[] fileBytes = {};
 		Call<ResponseBody> downloadCall = watsonWorkClient.getFile(authService.getAppAuthToken(), downloadURL);
 

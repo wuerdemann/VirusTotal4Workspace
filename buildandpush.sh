@@ -1,2 +1,2 @@
-./mvnw package && bx cf push -p target/VirusTotal4Workspace-0.1.war
+./mvnw package && bx cf push -p target/VirusTotal4Workspace-1.0.war
 

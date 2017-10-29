@@ -17,11 +17,16 @@ package com.ibm.watsonwork;
 
 import java.util.Map.Entry;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -98,7 +103,7 @@ public class AppCredentials {
 	 *            the service plan: standard, free or experimental (null means any)
 	 * @return the API key
 	 */
-	public static String getAPIKey(@NotEmpty String serviceName, String plan) {
+	public static String getAPIKey(@NotBlank String serviceName, String plan) {
 		if (serviceName == null || serviceName.isEmpty()) return null;
 
 		final JsonObject services = getVCAPServices();

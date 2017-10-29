@@ -5,7 +5,7 @@
 
 	<groupId>net.miwu.virustotal</groupId>
 	<artifactId>VirusTotal4Workspace</artifactId>
-	<version>0.1</version>
+	<version>1.0</version>
 	<packaging>war</packaging>
 
 	<name>VirusTotal4Workspace</name>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.M4</version>
+		<version>2.0.0.M5</version>
 	</parent>
 
 
