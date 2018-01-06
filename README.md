@@ -7,7 +7,7 @@ Requirements
 - [JDK 1.8 or higher version]
 - [Apache Maven 3.x]
 - [IBM Bluemix CLI] that includes [CloudFoundry]
-- [Virustotal] API-Key
+- [Virustotal] API-Key (has to be added to application.yml)
 - [IBM Watson Workspace] App-ID (see [https://developer.watsonwork.ibm.com/apps] )
 - opt. Lambok installed for Eclipse [https://projectlombok.org/setup/eclipse]
 
