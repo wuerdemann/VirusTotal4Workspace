@@ -38,7 +38,7 @@ public class VirusTotal4WorkspaceController {
 	 */
 	@GetMapping("/")
 	public String getHomepage(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) {
-		log.info("Homepage is colled");
+		log.info("Homepage is called");
 		return "index";
 	}
 }

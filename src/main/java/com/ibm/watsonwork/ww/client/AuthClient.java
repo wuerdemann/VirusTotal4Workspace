@@ -30,9 +30,7 @@ public interface AuthClient {
 			@Field("grant_type") String grantType);
 
 	@Headers({ "Content-Type: application/x-www-form-urlencoded" })
-
 	@FormUrlEncoded
-
 	@POST("/oauth/token")
 	Call<OauthResponse> exchangeCodeForToken(@Header("Authorization") String basicAuthorization,
 			@Field("code") String code, @Field("grant_type") String grantType,
