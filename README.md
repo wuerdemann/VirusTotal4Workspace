@@ -17,9 +17,11 @@ Getting started
  - `git clone https://github.com/wuerdemann/VirusTotal4Workspace.git`
 2. OR [Download] the project as a zip file and extract
  - `https://github.com/wuerdemann/VirusTotal4Workspace.git/archive/master.zip`
-3. Copy `src/main/resources/application-sample.yml`to `src/main/resources/application.yml` and add your own Service Credentials for [IBM Watson Work] (mandatory) and [VirusTotal API Key]
-4. Build and install the project using maven and Bluemix CLI
+3. Create a new App in IBM Watson Workspace [https://developer.watsonwork.ibm.com/] and safe the App ID and Credentials. You also need to register a webhook (URL: `https://<yourbaseurl>/webhook`) - the webhook will be enabled later.
+4. Copy `src/main/resources/application-sample.yml`to `src/main/resources/application.yml` and add your own Service Credentials for [IBM Watson Work] (mandatory) and [VirusTotal API Key]
+5. Build and install the project using maven and Bluemix CLI
  - `./buildandpush.sh`
+6. Now, the webhook in your IBM Watson Workspace config can be enabled.
  
 This Bot will be deployed according to `manifest.yml` (modify the route or name of the service, if needed):
  

@@ -51,7 +51,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WatsonWorkController {
 
-	private static final String SPACEID_DEBUG_SPACE = "59ba424ee4b03f07ff2b002e";
+	private static final String SPACEID_DEBUG_SPACE = "";
+	// private static final String SPACEID_DEBUG_SPACE = "<spaceid>";
 
 	@Autowired
 	private AuthService authService;
