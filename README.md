@@ -1,6 +1,6 @@
 # VirusTotal for IBM Watson Workspace
 
-This bot scans files in IBM Watson Workspace conversations for malicious content.
+This bot scans files in IBM Watson Workspace conversations for malicious content without sending the full file content. VirusTotal only checks the sha hash.
 
 Requirements
 ------------
@@ -14,9 +14,9 @@ Requirements
 Getting started
 ---------------
 1. Clone project from GIT repo
- - `git clone https://github.ibm.com/michael-wuerdemann/...`
+ - `git clone https://github.com/wuerdemann/VirusTotal4Workspace.git`
 2. OR [Download] the project as a zip file and extract
- - `https://github.ibm.com/michael-wuerdemann/.../archive/master.zip`
+ - `https://github.com/wuerdemann/VirusTotal4Workspace.git/archive/master.zip`
 3. Copy `src/main/resources/application-sample.yml`to `src/main/resources/application.yml` and add your own Service Credentials for [IBM Watson Work] (mandatory) and [VirusTotal API Key]
 4. Build and install the project using maven and Bluemix CLI
  - `./buildandpush.sh`
@@ -38,7 +38,7 @@ applications:
  Contact
 ---------------
 ### Support or Contact
-Having trouble with this project? Do not hesitate to contact me: Michael Würdemann <michael.wuerdemann@de.ibm.com> or via IBM Watson Workspace and I'll help you to sort it out.
+Having trouble with this project? Do not hesitate to contact me: Michael Würdemann <michael@wuerdemann.de> or via IBM Watson Workspace and I'll help you to sort it out.
 
 ### Contribute to this Project
 You are welcome to suggest new features and improvements. Please feel free to fork and make pull requests with your additions and improvements. 
